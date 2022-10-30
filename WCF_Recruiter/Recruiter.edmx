@@ -1,0 +1,1171 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Sistema_RecruiterModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CARGO">
+          <Key>
+            <PropertyRef Name="codCargo" />
+          </Key>
+          <Property Name="codCargo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Titulo" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CENTRO_ESTUDIOS">
+          <Key>
+            <PropertyRef Name="codCentro_Estu" />
+          </Key>
+          <Property Name="codCentro_Estu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tipo" Type="bit" Nullable="false" />
+          <Property Name="NombreCentroEstudio" Type="varchar" MaxLength="99" Nullable="false" />
+          <Property Name="Direccion" Type="varchar" MaxLength="99" />
+          <Property Name="Telefono" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="99" Nullable="false" />
+          <Property Name="codDistrito" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CLIENTE">
+          <Key>
+            <PropertyRef Name="codCliente" />
+          </Key>
+          <Property Name="codCliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="R_S_Cliente" Type="varchar" MaxLength="99" Nullable="false" />
+          <Property Name="Ruc" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="Direccion" Type="varchar" MaxLength="99" />
+          <Property Name="Telefono" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Fec_Reg" Type="date" Nullable="false" />
+          <Property Name="Usu_Reg" Type="varchar" MaxLength="30" />
+          <Property Name="Fec_Mod" Type="date" Nullable="false" />
+          <Property Name="Usu_Mod" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Contacto" Type="varchar" MaxLength="99" />
+          <Property Name="codGiro" Type="int" Nullable="false" />
+          <Property Name="codDistrito" Type="int" Nullable="false" />
+          <Property Name="Estado" Type="bit" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'Sistema_Recruiter.dbo.DETALLE_DOCTORADO' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="DETALLE_DOCTORADO">
+          <Key>
+            <PropertyRef Name="codCent_Estu" />
+            <PropertyRef Name="codDoctorado" />
+            <PropertyRef Name="codPostulante" />
+            <PropertyRef Name="EstadoDoctorado" />
+          </Key>
+          <Property Name="codCent_Estu" Type="int" Nullable="false" />
+          <Property Name="codDoctorado" Type="int" Nullable="false" />
+          <Property Name="codPostulante" Type="int" Nullable="false" />
+          <Property Name="EstadoDoctorado" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'Sistema_Recruiter.dbo.DETALLE_IDIOMA' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="DETALLE_IDIOMA">
+          <Key>
+            <PropertyRef Name="codIdioma" />
+            <PropertyRef Name="codPostulante" />
+            <PropertyRef Name="codCent_Estu" />
+            <PropertyRef Name="Nivel" />
+          </Key>
+          <Property Name="codIdioma" Type="int" Nullable="false" />
+          <Property Name="codPostulante" Type="int" Nullable="false" />
+          <Property Name="codCent_Estu" Type="int" Nullable="false" />
+          <Property Name="Nivel" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'Sistema_Recruiter.dbo.DETALLE_MASTER' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="DETALLE_MASTER">
+          <Key>
+            <PropertyRef Name="codCent_Estu" />
+            <PropertyRef Name="codMaster" />
+            <PropertyRef Name="codPostulante" />
+          </Key>
+          <Property Name="codCent_Estu" Type="int" Nullable="false" />
+          <Property Name="codMaster" Type="int" Nullable="false" />
+          <Property Name="codPostulante" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'Sistema_Recruiter.dbo.DETALLE_POSTGRADO' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="DETALLE_POSTGRADO">
+          <Key>
+            <PropertyRef Name="codCent_Estu" />
+            <PropertyRef Name="codPostgrado" />
+            <PropertyRef Name="codPostulante" />
+            <PropertyRef Name="EstadoPostgrado" />
+          </Key>
+          <Property Name="codCent_Estu" Type="int" Nullable="false" />
+          <Property Name="codPostgrado" Type="int" Nullable="false" />
+          <Property Name="codPostulante" Type="int" Nullable="false" />
+          <Property Name="EstadoPostgrado" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'Sistema_Recruiter.dbo.DETALLE_PREGRADO' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="DETALLE_PREGRADO">
+          <Key>
+            <PropertyRef Name="codCent_Estu" />
+            <PropertyRef Name="codPregrado" />
+            <PropertyRef Name="codPostulante" />
+          </Key>
+          <Property Name="codCent_Estu" Type="int" Nullable="false" />
+          <Property Name="codPregrado" Type="int" Nullable="false" />
+          <Property Name="codPostulante" Type="int" Nullable="false" />
+          <Property Name="Estado" Type="int" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'Sistema_Recruiter.dbo.DETALLE_PROCESOS' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="DETALLE_PROCESOS">
+          <Key>
+            <PropertyRef Name="codProceso" />
+            <PropertyRef Name="codPostulante" />
+            <PropertyRef Name="Resultado_Proceso" />
+          </Key>
+          <Property Name="codProceso" Type="int" Nullable="false" />
+          <Property Name="codPostulante" Type="int" Nullable="false" />
+          <Property Name="Resultado_Proceso" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DISTRITO">
+          <Key>
+            <PropertyRef Name="codDistrito" />
+          </Key>
+          <Property Name="codDistrito" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="99" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DOCTORADO">
+          <Key>
+            <PropertyRef Name="codDoctorado" />
+          </Key>
+          <Property Name="codDoctorado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NombreDoctorado" Type="varchar" MaxLength="99" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EXPERIENCIA">
+          <Key>
+            <PropertyRef Name="codExperiencia" />
+          </Key>
+          <Property Name="codExperiencia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Fec_ini" Type="date" Nullable="false" />
+          <Property Name="Fec_Ter" Type="date" Nullable="false" />
+          <Property Name="Empresa" Type="varchar" MaxLength="99" Nullable="false" />
+          <Property Name="codGiro" Type="int" />
+          <Property Name="codCargo" Type="int" />
+          <Property Name="codPostulante" Type="int" />
+        </EntityType>
+        <EntityType Name="GIRO">
+          <Key>
+            <PropertyRef Name="codGiro" />
+          </Key>
+          <Property Name="codGiro" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="99" Nullable="false" />
+          <Property Name="Sector" Type="varchar" MaxLength="99" Nullable="false" />
+        </EntityType>
+        <EntityType Name="IDIOMA_EXTRANJERO">
+          <Key>
+            <PropertyRef Name="codIdioma" />
+          </Key>
+          <Property Name="codIdioma" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MASTER">
+          <Key>
+            <PropertyRef Name="codMaster" />
+          </Key>
+          <Property Name="codMaster" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NombreMaster" Type="varchar" MaxLength="99" Nullable="false" />
+        </EntityType>
+        <EntityType Name="POSTULANTE">
+          <Key>
+            <PropertyRef Name="codPostulante" />
+          </Key>
+          <Property Name="codPostulante" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombres" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Apellidos" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Dni" Type="char" MaxLength="8" Nullable="false" />
+          <Property Name="Fec_Nac" Type="date" />
+          <Property Name="Sexo" Type="char" MaxLength="1" />
+          <Property Name="Telefono" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="99" Nullable="false" />
+          <Property Name="Direccion" Type="varchar" MaxLength="99" />
+          <Property Name="Fec_Reg" Type="date" Nullable="false" />
+          <Property Name="Usu_Reg" Type="varchar" MaxLength="30" />
+          <Property Name="Fec_Mod" Type="date" Nullable="false" />
+          <Property Name="Usu_Mod" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="codCargo" Type="int" />
+          <Property Name="codDistrito" Type="int" Nullable="false" />
+          <Property Name="codPregrado" Type="int" Nullable="false" />
+          <Property Name="codDoctorado" Type="int" />
+          <Property Name="codMaster" Type="int" />
+          <Property Name="codCent_Estu" Type="int" Nullable="false" />
+          <Property Name="Estado" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PREGRADO">
+          <Key>
+            <PropertyRef Name="codPregrado" />
+          </Key>
+          <Property Name="codPregrado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NombrePregrado" Type="varchar" MaxLength="99" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PROCESOS">
+          <Key>
+            <PropertyRef Name="codProceso" />
+          </Key>
+          <Property Name="codProceso" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Plaza" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Fec_ini" Type="date" Nullable="false" />
+          <Property Name="Fec_Fin" Type="date" Nullable="false" />
+          <Property Name="Estado" Type="bit" Nullable="false" />
+          <Property Name="codCliente" Type="int" Nullable="false" />
+          <Property Name="Requisitos" Type="varchar(max)" />
+          <Property Name="Fec_Reg" Type="date" Nullable="false" />
+          <Property Name="Usu_Reg" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Fec_Mod" Type="date" Nullable="false" />
+          <Property Name="Usu_Mod" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="USUARIO">
+          <Key>
+            <PropertyRef Name="Login_Usuario" />
+          </Key>
+          <Property Name="Login_Usuario" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Pass_Usuario" Type="varchar" MaxLength="20" />
+          <Property Name="Nivel" Type="bit" />
+          <Property Name="Estado" Type="bit" />
+          <Property Name="Fec_Reg" Type="date" Nullable="false" />
+          <Property Name="Usu_Reg" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="sp_ActualizarCentroEstudio" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cod_cen" Type="int" Mode="In" />
+          <Parameter Name="tipo_cen" Type="bit" Mode="In" />
+          <Parameter Name="nombre_cen" Type="varchar" Mode="In" />
+          <Parameter Name="direccion_cen" Type="varchar" Mode="In" />
+          <Parameter Name="telefono_cen" Type="varchar" Mode="In" />
+          <Parameter Name="email_cen" Type="varchar" Mode="In" />
+          <Parameter Name="coddis_cen" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_ActualizarDoctorado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cod_cen" Type="int" Mode="In" />
+          <Parameter Name="NombreDoctorado" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_ActualizarMaster" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cod_cen" Type="int" Mode="In" />
+          <Parameter Name="NombreMaster" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_ActualziarPostulante" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cod_pos" Type="int" Mode="In" />
+          <Parameter Name="nom_pos" Type="varchar" Mode="In" />
+          <Parameter Name="apell_pos" Type="varchar" Mode="In" />
+          <Parameter Name="dni_pos" Type="varchar" Mode="In" />
+          <Parameter Name="fecnac_pos" Type="smalldatetime" Mode="In" />
+          <Parameter Name="sexo_pos" Type="varchar" Mode="In" />
+          <Parameter Name="telefono_pos" Type="varchar" Mode="In" />
+          <Parameter Name="email_pos" Type="varchar" Mode="In" />
+          <Parameter Name="direccion_pos" Type="varchar" Mode="In" />
+          <Parameter Name="fecreg_pos" Type="smalldatetime" Mode="In" />
+          <Parameter Name="usureg_pos" Type="varchar" Mode="In" />
+          <Parameter Name="codcargo_pos" Type="int" Mode="In" />
+          <Parameter Name="coddis_pos" Type="int" Mode="In" />
+          <Parameter Name="codpre_pos" Type="int" Mode="In" />
+          <Parameter Name="coddoc_pos" Type="int" Mode="In" />
+          <Parameter Name="codmaster_pos" Type="int" Mode="In" />
+          <Parameter Name="codcen_pos" Type="int" Mode="In" />
+          <Parameter Name="estado_pos" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_ConsultarCentroEstudio" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cod_cen" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_ConsultarPostulante" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cod_pos" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_EliminarCentroEstudio" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cod_cen" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_EliminarPostulante" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cod_pos" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_InsertarCentroEstudio" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="tipo_cen" Type="bit" Mode="In" />
+          <Parameter Name="nombre_cen" Type="varchar" Mode="In" />
+          <Parameter Name="direccion_cen" Type="varchar" Mode="In" />
+          <Parameter Name="telefono_cen" Type="varchar" Mode="In" />
+          <Parameter Name="email_cen" Type="varchar" Mode="In" />
+          <Parameter Name="coddis_cen" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_InsertarPostulante" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nom_pos" Type="varchar" Mode="In" />
+          <Parameter Name="apell_pos" Type="varchar" Mode="In" />
+          <Parameter Name="dni_pos" Type="varchar" Mode="In" />
+          <Parameter Name="fecnac_pos" Type="smalldatetime" Mode="In" />
+          <Parameter Name="sexo_pos" Type="varchar" Mode="In" />
+          <Parameter Name="telefono_pos" Type="varchar" Mode="In" />
+          <Parameter Name="email_pos" Type="varchar" Mode="In" />
+          <Parameter Name="direccion_pos" Type="varchar" Mode="In" />
+          <Parameter Name="usureg_pos" Type="varchar" Mode="In" />
+          <Parameter Name="codcargo_pos" Type="int" Mode="In" />
+          <Parameter Name="coddis_pos" Type="int" Mode="In" />
+          <Parameter Name="codpre_pos" Type="int" Mode="In" />
+          <Parameter Name="coddoc_pos" Type="int" Mode="In" />
+          <Parameter Name="codmaster_pos" Type="int" Mode="In" />
+          <Parameter Name="codcen_pos" Type="int" Mode="In" />
+          <Parameter Name="estado_pos" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_Servicio_Procesos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="fecini" Type="smalldatetime" Mode="In" />
+          <Parameter Name="fecfin" Type="smalldatetime" Mode="In" />
+        </Function>
+        <Function Name="sp_Servicio_Seleccion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="code" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="Sistema_RecruiterModel1StoreContainer">
+          <EntitySet Name="CARGO" EntityType="Self.CARGO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CENTRO_ESTUDIOS" EntityType="Self.CENTRO_ESTUDIOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CLIENTE" EntityType="Self.CLIENTE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DISTRITO" EntityType="Self.DISTRITO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DOCTORADO" EntityType="Self.DOCTORADO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EXPERIENCIA" EntityType="Self.EXPERIENCIA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GIRO" EntityType="Self.GIRO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IDIOMA_EXTRANJERO" EntityType="Self.IDIOMA_EXTRANJERO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MASTER" EntityType="Self.MASTER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="POSTULANTE" EntityType="Self.POSTULANTE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PREGRADO" EntityType="Self.PREGRADO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PROCESOS" EntityType="Self.PROCESOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USUARIO" EntityType="Self.USUARIO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DETALLE_DOCTORADO" EntityType="Self.DETALLE_DOCTORADO" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [DETALLE_DOCTORADO].[codCent_Estu] AS [codCent_Estu], 
+    [DETALLE_DOCTORADO].[codDoctorado] AS [codDoctorado], 
+    [DETALLE_DOCTORADO].[codPostulante] AS [codPostulante], 
+    [DETALLE_DOCTORADO].[EstadoDoctorado] AS [EstadoDoctorado]
+    FROM [dbo].[DETALLE_DOCTORADO] AS [DETALLE_DOCTORADO]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="DETALLE_IDIOMA" EntityType="Self.DETALLE_IDIOMA" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [DETALLE_IDIOMA].[codIdioma] AS [codIdioma], 
+    [DETALLE_IDIOMA].[codPostulante] AS [codPostulante], 
+    [DETALLE_IDIOMA].[codCent_Estu] AS [codCent_Estu], 
+    [DETALLE_IDIOMA].[Nivel] AS [Nivel]
+    FROM [dbo].[DETALLE_IDIOMA] AS [DETALLE_IDIOMA]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="DETALLE_MASTER" EntityType="Self.DETALLE_MASTER" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [DETALLE_MASTER].[codCent_Estu] AS [codCent_Estu], 
+    [DETALLE_MASTER].[codMaster] AS [codMaster], 
+    [DETALLE_MASTER].[codPostulante] AS [codPostulante]
+    FROM [dbo].[DETALLE_MASTER] AS [DETALLE_MASTER]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="DETALLE_POSTGRADO" EntityType="Self.DETALLE_POSTGRADO" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [DETALLE_POSTGRADO].[codCent_Estu] AS [codCent_Estu], 
+    [DETALLE_POSTGRADO].[codPostgrado] AS [codPostgrado], 
+    [DETALLE_POSTGRADO].[codPostulante] AS [codPostulante], 
+    [DETALLE_POSTGRADO].[EstadoPostgrado] AS [EstadoPostgrado]
+    FROM [dbo].[DETALLE_POSTGRADO] AS [DETALLE_POSTGRADO]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="DETALLE_PREGRADO" EntityType="Self.DETALLE_PREGRADO" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [DETALLE_PREGRADO].[codCent_Estu] AS [codCent_Estu], 
+    [DETALLE_PREGRADO].[codPregrado] AS [codPregrado], 
+    [DETALLE_PREGRADO].[codPostulante] AS [codPostulante], 
+    [DETALLE_PREGRADO].[Estado] AS [Estado]
+    FROM [dbo].[DETALLE_PREGRADO] AS [DETALLE_PREGRADO]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="DETALLE_PROCESOS" EntityType="Self.DETALLE_PROCESOS" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [DETALLE_PROCESOS].[codProceso] AS [codProceso], 
+    [DETALLE_PROCESOS].[codPostulante] AS [codPostulante], 
+    [DETALLE_PROCESOS].[Resultado_Proceso] AS [Resultado_Proceso]
+    FROM [dbo].[DETALLE_PROCESOS] AS [DETALLE_PROCESOS]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Sistema_RecruiterModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CARGO">
+          <Key>
+            <PropertyRef Name="codCargo" />
+          </Key>
+          <Property Name="codCargo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Titulo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CENTRO_ESTUDIOS">
+          <Key>
+            <PropertyRef Name="codCentro_Estu" />
+          </Key>
+          <Property Name="codCentro_Estu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tipo" Type="Boolean" Nullable="false" />
+          <Property Name="NombreCentroEstudio" Type="String" MaxLength="99" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Direccion" Type="String" MaxLength="99" FixedLength="false" Unicode="false" />
+          <Property Name="Telefono" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="99" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="codDistrito" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CLIENTE">
+          <Key>
+            <PropertyRef Name="codCliente" />
+          </Key>
+          <Property Name="codCliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="R_S_Cliente" Type="String" MaxLength="99" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Ruc" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Direccion" Type="String" MaxLength="99" FixedLength="false" Unicode="false" />
+          <Property Name="Telefono" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Fec_Reg" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Usu_Reg" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Fec_Mod" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Usu_Mod" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Contacto" Type="String" MaxLength="99" FixedLength="false" Unicode="false" />
+          <Property Name="codGiro" Type="Int32" Nullable="false" />
+          <Property Name="codDistrito" Type="Int32" Nullable="false" />
+          <Property Name="Estado" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DISTRITO">
+          <Key>
+            <PropertyRef Name="codDistrito" />
+          </Key>
+          <Property Name="codDistrito" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="99" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DOCTORADO">
+          <Key>
+            <PropertyRef Name="codDoctorado" />
+          </Key>
+          <Property Name="codDoctorado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreDoctorado" Type="String" MaxLength="99" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EXPERIENCIA">
+          <Key>
+            <PropertyRef Name="codExperiencia" />
+          </Key>
+          <Property Name="codExperiencia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fec_ini" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Fec_Ter" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Empresa" Type="String" MaxLength="99" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="codGiro" Type="Int32" />
+          <Property Name="codCargo" Type="Int32" />
+          <Property Name="codPostulante" Type="Int32" />
+        </EntityType>
+        <EntityType Name="GIRO">
+          <Key>
+            <PropertyRef Name="codGiro" />
+          </Key>
+          <Property Name="codGiro" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="99" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Sector" Type="String" MaxLength="99" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="IDIOMA_EXTRANJERO">
+          <Key>
+            <PropertyRef Name="codIdioma" />
+          </Key>
+          <Property Name="codIdioma" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MASTER">
+          <Key>
+            <PropertyRef Name="codMaster" />
+          </Key>
+          <Property Name="codMaster" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreMaster" Type="String" MaxLength="99" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="POSTULANTE">
+          <Key>
+            <PropertyRef Name="codPostulante" />
+          </Key>
+          <Property Name="codPostulante" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombres" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Apellidos" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Dni" Type="String" MaxLength="8" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Fec_Nac" Type="DateTime" Precision="0" />
+          <Property Name="Sexo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Telefono" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="99" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Direccion" Type="String" MaxLength="99" FixedLength="false" Unicode="false" />
+          <Property Name="Fec_Reg" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Usu_Reg" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Fec_Mod" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Usu_Mod" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="codCargo" Type="Int32" />
+          <Property Name="codDistrito" Type="Int32" Nullable="false" />
+          <Property Name="codPregrado" Type="Int32" Nullable="false" />
+          <Property Name="codDoctorado" Type="Int32" />
+          <Property Name="codMaster" Type="Int32" />
+          <Property Name="codCent_Estu" Type="Int32" Nullable="false" />
+          <Property Name="Estado" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PREGRADO">
+          <Key>
+            <PropertyRef Name="codPregrado" />
+          </Key>
+          <Property Name="codPregrado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombrePregrado" Type="String" MaxLength="99" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PROCESOS">
+          <Key>
+            <PropertyRef Name="codProceso" />
+          </Key>
+          <Property Name="codProceso" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Plaza" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Fec_ini" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Fec_Fin" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Estado" Type="Boolean" Nullable="false" />
+          <Property Name="codCliente" Type="Int32" Nullable="false" />
+          <Property Name="Requisitos" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Fec_Reg" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Usu_Reg" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Fec_Mod" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Usu_Mod" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="USUARIO">
+          <Key>
+            <PropertyRef Name="Login_Usuario" />
+          </Key>
+          <Property Name="Login_Usuario" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Pass_Usuario" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Nivel" Type="Boolean" />
+          <Property Name="Estado" Type="Boolean" />
+          <Property Name="Fec_Reg" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Usu_Reg" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="DETALLE_DOCTORADO">
+          <Key>
+            <PropertyRef Name="codCent_Estu" />
+            <PropertyRef Name="codDoctorado" />
+            <PropertyRef Name="codPostulante" />
+            <PropertyRef Name="EstadoDoctorado" />
+          </Key>
+          <Property Name="codCent_Estu" Type="Int32" Nullable="false" />
+          <Property Name="codDoctorado" Type="Int32" Nullable="false" />
+          <Property Name="codPostulante" Type="Int32" Nullable="false" />
+          <Property Name="EstadoDoctorado" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DETALLE_IDIOMA">
+          <Key>
+            <PropertyRef Name="codIdioma" />
+            <PropertyRef Name="codPostulante" />
+            <PropertyRef Name="codCent_Estu" />
+            <PropertyRef Name="Nivel" />
+          </Key>
+          <Property Name="codIdioma" Type="Int32" Nullable="false" />
+          <Property Name="codPostulante" Type="Int32" Nullable="false" />
+          <Property Name="codCent_Estu" Type="Int32" Nullable="false" />
+          <Property Name="Nivel" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DETALLE_MASTER">
+          <Key>
+            <PropertyRef Name="codCent_Estu" />
+            <PropertyRef Name="codMaster" />
+            <PropertyRef Name="codPostulante" />
+          </Key>
+          <Property Name="codCent_Estu" Type="Int32" Nullable="false" />
+          <Property Name="codMaster" Type="Int32" Nullable="false" />
+          <Property Name="codPostulante" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DETALLE_POSTGRADO">
+          <Key>
+            <PropertyRef Name="codCent_Estu" />
+            <PropertyRef Name="codPostgrado" />
+            <PropertyRef Name="codPostulante" />
+            <PropertyRef Name="EstadoPostgrado" />
+          </Key>
+          <Property Name="codCent_Estu" Type="Int32" Nullable="false" />
+          <Property Name="codPostgrado" Type="Int32" Nullable="false" />
+          <Property Name="codPostulante" Type="Int32" Nullable="false" />
+          <Property Name="EstadoPostgrado" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DETALLE_PREGRADO">
+          <Key>
+            <PropertyRef Name="codCent_Estu" />
+            <PropertyRef Name="codPregrado" />
+            <PropertyRef Name="codPostulante" />
+          </Key>
+          <Property Name="codCent_Estu" Type="Int32" Nullable="false" />
+          <Property Name="codPregrado" Type="Int32" Nullable="false" />
+          <Property Name="codPostulante" Type="Int32" Nullable="false" />
+          <Property Name="Estado" Type="Int32" />
+        </EntityType>
+        <EntityType Name="DETALLE_PROCESOS">
+          <Key>
+            <PropertyRef Name="codProceso" />
+            <PropertyRef Name="codPostulante" />
+            <PropertyRef Name="Resultado_Proceso" />
+          </Key>
+          <Property Name="codProceso" Type="Int32" Nullable="false" />
+          <Property Name="codPostulante" Type="Int32" Nullable="false" />
+          <Property Name="Resultado_Proceso" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="Proy_SistemaRecruiter" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CARGO" EntityType="Self.CARGO" />
+          <EntitySet Name="CENTRO_ESTUDIOS" EntityType="Self.CENTRO_ESTUDIOS" />
+          <EntitySet Name="CLIENTE" EntityType="Self.CLIENTE" />
+          <EntitySet Name="DISTRITO" EntityType="Self.DISTRITO" />
+          <EntitySet Name="DOCTORADO" EntityType="Self.DOCTORADO" />
+          <EntitySet Name="EXPERIENCIA" EntityType="Self.EXPERIENCIA" />
+          <EntitySet Name="GIRO" EntityType="Self.GIRO" />
+          <EntitySet Name="IDIOMA_EXTRANJERO" EntityType="Self.IDIOMA_EXTRANJERO" />
+          <EntitySet Name="MASTER" EntityType="Self.MASTER" />
+          <EntitySet Name="POSTULANTE" EntityType="Self.POSTULANTE" />
+          <EntitySet Name="PREGRADO" EntityType="Self.PREGRADO" />
+          <EntitySet Name="PROCESOS" EntityType="Self.PROCESOS" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="USUARIO" EntityType="Self.USUARIO" />
+          <EntitySet Name="DETALLE_DOCTORADO" EntityType="Self.DETALLE_DOCTORADO" />
+          <EntitySet Name="DETALLE_IDIOMA" EntityType="Self.DETALLE_IDIOMA" />
+          <EntitySet Name="DETALLE_MASTER" EntityType="Self.DETALLE_MASTER" />
+          <EntitySet Name="DETALLE_POSTGRADO" EntityType="Self.DETALLE_POSTGRADO" />
+          <EntitySet Name="DETALLE_PREGRADO" EntityType="Self.DETALLE_PREGRADO" />
+          <EntitySet Name="DETALLE_PROCESOS" EntityType="Self.DETALLE_PROCESOS" />
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Servicio_Procesos" ReturnType="Collection(Sistema_RecruiterModel1.sp_Servicio_Procesos_Result)">
+            <Parameter Name="fecini" Mode="In" Type="DateTime" />
+            <Parameter Name="fecfin" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Servicio_Seleccion" ReturnType="Collection(Sistema_RecruiterModel1.sp_Servicio_Seleccion_Result)">
+          <Parameter Name="code" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+          <FunctionImport Name="sp_ActualizarCentroEstudio">
+            <Parameter Name="cod_cen" Mode="In" Type="Int32" />
+            <Parameter Name="tipo_cen" Mode="In" Type="Boolean" />
+            <Parameter Name="nombre_cen" Mode="In" Type="String" />
+            <Parameter Name="direccion_cen" Mode="In" Type="String" />
+            <Parameter Name="telefono_cen" Mode="In" Type="String" />
+            <Parameter Name="email_cen" Mode="In" Type="String" />
+            <Parameter Name="coddis_cen" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ConsultarCentroEstudio" ReturnType="Collection(Sistema_RecruiterModel1.sp_ConsultarCentroEstudio_Result)">
+          <Parameter Name="cod_cen" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_EliminarCentroEstudio">
+          <Parameter Name="cod_cen" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_InsertarCentroEstudio">
+            <Parameter Name="tipo_cen" Mode="In" Type="Boolean" />
+            <Parameter Name="nombre_cen" Mode="In" Type="String" />
+            <Parameter Name="direccion_cen" Mode="In" Type="String" />
+            <Parameter Name="telefono_cen" Mode="In" Type="String" />
+            <Parameter Name="email_cen" Mode="In" Type="String" />
+            <Parameter Name="coddis_cen" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ActualziarPostulante">
+            <Parameter Name="cod_pos" Mode="In" Type="Int32" />
+            <Parameter Name="nom_pos" Mode="In" Type="String" />
+            <Parameter Name="apell_pos" Mode="In" Type="String" />
+            <Parameter Name="dni_pos" Mode="In" Type="String" />
+            <Parameter Name="fecnac_pos" Mode="In" Type="DateTime" />
+            <Parameter Name="sexo_pos" Mode="In" Type="String" />
+            <Parameter Name="telefono_pos" Mode="In" Type="String" />
+            <Parameter Name="email_pos" Mode="In" Type="String" />
+            <Parameter Name="direccion_pos" Mode="In" Type="String" />
+            <Parameter Name="fecreg_pos" Mode="In" Type="DateTime" />
+            <Parameter Name="usureg_pos" Mode="In" Type="String" />
+            <Parameter Name="codcargo_pos" Mode="In" Type="Int32" />
+            <Parameter Name="coddis_pos" Mode="In" Type="Int32" />
+            <Parameter Name="codpre_pos" Mode="In" Type="Int32" />
+            <Parameter Name="coddoc_pos" Mode="In" Type="Int32" />
+            <Parameter Name="codmaster_pos" Mode="In" Type="Int32" />
+            <Parameter Name="codcen_pos" Mode="In" Type="Int32" />
+            <Parameter Name="estado_pos" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ConsultarPostulante" ReturnType="Collection(Sistema_RecruiterModel1.sp_ConsultarPostulante_Result)">
+          <Parameter Name="cod_pos" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_EliminarPostulante">
+          <Parameter Name="cod_pos" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_InsertarPostulante">
+            <Parameter Name="nom_pos" Mode="In" Type="String" />
+            <Parameter Name="apell_pos" Mode="In" Type="String" />
+            <Parameter Name="dni_pos" Mode="In" Type="String" />
+            <Parameter Name="fecnac_pos" Mode="In" Type="DateTime" />
+            <Parameter Name="sexo_pos" Mode="In" Type="String" />
+            <Parameter Name="telefono_pos" Mode="In" Type="String" />
+            <Parameter Name="email_pos" Mode="In" Type="String" />
+            <Parameter Name="direccion_pos" Mode="In" Type="String" />
+            <Parameter Name="usureg_pos" Mode="In" Type="String" />
+            <Parameter Name="codcargo_pos" Mode="In" Type="Int32" />
+            <Parameter Name="coddis_pos" Mode="In" Type="Int32" />
+            <Parameter Name="codpre_pos" Mode="In" Type="Int32" />
+            <Parameter Name="coddoc_pos" Mode="In" Type="Int32" />
+            <Parameter Name="codmaster_pos" Mode="In" Type="Int32" />
+            <Parameter Name="codcen_pos" Mode="In" Type="Int32" />
+            <Parameter Name="estado_pos" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ActualizarDoctorado">
+            <Parameter Name="cod_cen" Mode="In" Type="Int32" />
+            <Parameter Name="NombreDoctorado" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ActualizarMaster">
+            <Parameter Name="cod_cen" Mode="In" Type="Int32" />
+            <Parameter Name="NombreMaster" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="sp_Servicio_Procesos_Result">
+          <Property Type="Int32" Name="codProceso" Nullable="false" />
+          <Property Type="String" Name="Plaza" Nullable="false" MaxLength="30" />
+          <Property Type="Boolean" Name="Estado" Nullable="false" />
+          <Property Type="DateTime" Name="Fec_ini" Nullable="false" />
+          <Property Type="DateTime" Name="Fec_Fin" Nullable="false" />
+          <Property Type="String" Name="Nombres" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Apellidos" Nullable="false" MaxLength="20" />
+          <Property Type="Boolean" Name="Resultado_Proceso" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sp_Servicio_Seleccion_Result">
+          <Property Type="String" Name="Nombres" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Apellidos" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Empresa" Nullable="false" MaxLength="99" />
+          <Property Type="String" Name="Titulo" Nullable="false" MaxLength="30" />
+          <Property Type="DateTime" Name="Fec_ini" Nullable="false" />
+          <Property Type="DateTime" Name="Fec_Ter" Nullable="false" />
+          <Property Type="String" Name="NombrePregrado" Nullable="false" MaxLength="99" />
+          <Property Type="Int32" Name="Estado" Nullable="true" />
+          <Property Type="String" Name="NombreMaster" Nullable="false" MaxLength="99" />
+          <Property Type="String" Name="NombreDoctorado" Nullable="false" MaxLength="99" />
+          <Property Type="Int32" Name="EstadoDoctorado" Nullable="false" />
+          <Property Type="String" Name="NombreCentroEstudio" Nullable="false" MaxLength="99" />
+        </ComplexType>
+        <ComplexType Name="sp_ConsultarCentroEstudio_Result">
+          <Property Type="Int32" Name="codCentro_Estu" Nullable="false" />
+          <Property Type="Boolean" Name="Tipo" Nullable="false" />
+          <Property Type="String" Name="NombreCentroEstudio" Nullable="false" MaxLength="99" />
+          <Property Type="String" Name="Direccion" Nullable="true" MaxLength="99" />
+          <Property Type="String" Name="Telefono" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="Email" Nullable="false" MaxLength="99" />
+          <Property Type="Int32" Name="codDistrito" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sp_ConsultarPostulante_Result">
+          <Property Type="Int32" Name="codPostulante" Nullable="false" />
+          <Property Type="String" Name="Nombres" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Apellidos" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Dni" Nullable="false" MaxLength="8" />
+          <Property Type="DateTime" Name="Fec_Nac" Nullable="true" />
+          <Property Type="String" Name="Sexo" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="Telefono" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="Email" Nullable="false" MaxLength="99" />
+          <Property Type="String" Name="Direccion" Nullable="true" MaxLength="99" />
+          <Property Type="DateTime" Name="Fec_Reg" Nullable="false" />
+          <Property Type="String" Name="Usu_Reg" Nullable="true" MaxLength="30" />
+          <Property Type="DateTime" Name="Fec_Mod" Nullable="false" />
+          <Property Type="String" Name="Usu_Mod" Nullable="false" MaxLength="30" />
+          <Property Type="Int32" Name="codCargo" Nullable="true" />
+          <Property Type="Int32" Name="codDistrito" Nullable="false" />
+          <Property Type="Int32" Name="codPregrado" Nullable="false" />
+          <Property Type="Int32" Name="codDoctorado" Nullable="true" />
+          <Property Type="Int32" Name="codMaster" Nullable="true" />
+          <Property Type="Int32" Name="codCent_Estu" Nullable="false" />
+          <Property Type="Boolean" Name="Estado" Nullable="false" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Sistema_RecruiterModel1StoreContainer" CdmEntityContainer="Proy_SistemaRecruiter">
+          <EntitySetMapping Name="CARGO">
+            <EntityTypeMapping TypeName="Sistema_RecruiterModel1.CARGO">
+              <MappingFragment StoreEntitySet="CARGO">
+                <ScalarProperty Name="codCargo" ColumnName="codCargo" />
+                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CENTRO_ESTUDIOS">
+            <EntityTypeMapping TypeName="Sistema_RecruiterModel1.CENTRO_ESTUDIOS">
+              <MappingFragment StoreEntitySet="CENTRO_ESTUDIOS">
+                <ScalarProperty Name="codCentro_Estu" ColumnName="codCentro_Estu" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="NombreCentroEstudio" ColumnName="NombreCentroEstudio" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="codDistrito" ColumnName="codDistrito" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CLIENTE">
+            <EntityTypeMapping TypeName="Sistema_RecruiterModel1.CLIENTE">
+              <MappingFragment StoreEntitySet="CLIENTE">
+                <ScalarProperty Name="codCliente" ColumnName="codCliente" />
+                <ScalarProperty Name="R_S_Cliente" ColumnName="R_S_Cliente" />
+                <ScalarProperty Name="Ruc" ColumnName="Ruc" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Fec_Reg" ColumnName="Fec_Reg" />
+                <ScalarProperty Name="Usu_Reg" ColumnName="Usu_Reg" />
+                <ScalarProperty Name="Fec_Mod" ColumnName="Fec_Mod" />
+                <ScalarProperty Name="Usu_Mod" ColumnName="Usu_Mod" />
+                <ScalarProperty Name="Contacto" ColumnName="Contacto" />
+                <ScalarProperty Name="codGiro" ColumnName="codGiro" />
+                <ScalarProperty Name="codDistrito" ColumnName="codDistrito" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DISTRITO">
+            <EntityTypeMapping TypeName="Sistema_RecruiterModel1.DISTRITO">
+              <MappingFragment StoreEntitySet="DISTRITO">
+                <ScalarProperty Name="codDistrito" ColumnName="codDistrito" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DOCTORADO">
+            <EntityTypeMapping TypeName="Sistema_RecruiterModel1.DOCTORADO">
+              <MappingFragment StoreEntitySet="DOCTORADO">
+                <ScalarProperty Name="codDoctorado" ColumnName="codDoctorado" />
+                <ScalarProperty Name="NombreDoctorado" ColumnName="NombreDoctorado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EXPERIENCIA">
+            <EntityTypeMapping TypeName="Sistema_RecruiterModel1.EXPERIENCIA">
+              <MappingFragment StoreEntitySet="EXPERIENCIA">
+                <ScalarProperty Name="codExperiencia" ColumnName="codExperiencia" />
+                <ScalarProperty Name="Fec_ini" ColumnName="Fec_ini" />
+                <ScalarProperty Name="Fec_Ter" ColumnName="Fec_Ter" />
+                <ScalarProperty Name="Empresa" ColumnName="Empresa" />
+                <ScalarProperty Name="codGiro" ColumnName="codGiro" />
+                <ScalarProperty Name="codCargo" ColumnName="codCargo" />
+                <ScalarProperty Name="codPostulante" ColumnName="codPostulante" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GIRO">
+            <EntityTypeMapping TypeName="Sistema_RecruiterModel1.GIRO">
+              <MappingFragment StoreEntitySet="GIRO">
+                <ScalarProperty Name="codGiro" ColumnName="codGiro" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Sector" ColumnName="Sector" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IDIOMA_EXTRANJERO">
+            <EntityTypeMapping TypeName="Sistema_RecruiterModel1.IDIOMA_EXTRANJERO">
+              <MappingFragment StoreEntitySet="IDIOMA_EXTRANJERO">
+                <ScalarProperty Name="codIdioma" ColumnName="codIdioma" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MASTER">
+            <EntityTypeMapping TypeName="Sistema_RecruiterModel1.MASTER">
+              <MappingFragment StoreEntitySet="MASTER">
+                <ScalarProperty Name="codMaster" ColumnName="codMaster" />
+                <ScalarProperty Name="NombreMaster" ColumnName="NombreMaster" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="POSTULANTE">
+            <EntityTypeMapping TypeName="Sistema_RecruiterModel1.POSTULANTE">
+              <MappingFragment StoreEntitySet="POSTULANTE">
+                <ScalarProperty Name="codPostulante" ColumnName="codPostulante" />
+                <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+                <ScalarProperty Name="Dni" ColumnName="Dni" />
+                <ScalarProperty Name="Fec_Nac" ColumnName="Fec_Nac" />
+                <ScalarProperty Name="Sexo" ColumnName="Sexo" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Fec_Reg" ColumnName="Fec_Reg" />
+                <ScalarProperty Name="Usu_Reg" ColumnName="Usu_Reg" />
+                <ScalarProperty Name="Fec_Mod" ColumnName="Fec_Mod" />
+                <ScalarProperty Name="Usu_Mod" ColumnName="Usu_Mod" />
+                <ScalarProperty Name="codCargo" ColumnName="codCargo" />
+                <ScalarProperty Name="codDistrito" ColumnName="codDistrito" />
+                <ScalarProperty Name="codPregrado" ColumnName="codPregrado" />
+                <ScalarProperty Name="codDoctorado" ColumnName="codDoctorado" />
+                <ScalarProperty Name="codMaster" ColumnName="codMaster" />
+                <ScalarProperty Name="codCent_Estu" ColumnName="codCent_Estu" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PREGRADO">
+            <EntityTypeMapping TypeName="Sistema_RecruiterModel1.PREGRADO">
+              <MappingFragment StoreEntitySet="PREGRADO">
+                <ScalarProperty Name="codPregrado" ColumnName="codPregrado" />
+                <ScalarProperty Name="NombrePregrado" ColumnName="NombrePregrado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PROCESOS">
+            <EntityTypeMapping TypeName="Sistema_RecruiterModel1.PROCESOS">
+              <MappingFragment StoreEntitySet="PROCESOS">
+                <ScalarProperty Name="codProceso" ColumnName="codProceso" />
+                <ScalarProperty Name="Plaza" ColumnName="Plaza" />
+                <ScalarProperty Name="Fec_ini" ColumnName="Fec_ini" />
+                <ScalarProperty Name="Fec_Fin" ColumnName="Fec_Fin" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="codCliente" ColumnName="codCliente" />
+                <ScalarProperty Name="Requisitos" ColumnName="Requisitos" />
+                <ScalarProperty Name="Fec_Reg" ColumnName="Fec_Reg" />
+                <ScalarProperty Name="Usu_Reg" ColumnName="Usu_Reg" />
+                <ScalarProperty Name="Fec_Mod" ColumnName="Fec_Mod" />
+                <ScalarProperty Name="Usu_Mod" ColumnName="Usu_Mod" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="Sistema_RecruiterModel1.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USUARIO">
+            <EntityTypeMapping TypeName="Sistema_RecruiterModel1.USUARIO">
+              <MappingFragment StoreEntitySet="USUARIO">
+                <ScalarProperty Name="Login_Usuario" ColumnName="Login_Usuario" />
+                <ScalarProperty Name="Pass_Usuario" ColumnName="Pass_Usuario" />
+                <ScalarProperty Name="Nivel" ColumnName="Nivel" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Fec_Reg" ColumnName="Fec_Reg" />
+                <ScalarProperty Name="Usu_Reg" ColumnName="Usu_Reg" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DETALLE_DOCTORADO">
+            <EntityTypeMapping TypeName="Sistema_RecruiterModel1.DETALLE_DOCTORADO">
+              <MappingFragment StoreEntitySet="DETALLE_DOCTORADO">
+                <ScalarProperty Name="codCent_Estu" ColumnName="codCent_Estu" />
+                <ScalarProperty Name="codDoctorado" ColumnName="codDoctorado" />
+                <ScalarProperty Name="codPostulante" ColumnName="codPostulante" />
+                <ScalarProperty Name="EstadoDoctorado" ColumnName="EstadoDoctorado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DETALLE_IDIOMA">
+            <EntityTypeMapping TypeName="Sistema_RecruiterModel1.DETALLE_IDIOMA">
+              <MappingFragment StoreEntitySet="DETALLE_IDIOMA">
+                <ScalarProperty Name="codIdioma" ColumnName="codIdioma" />
+                <ScalarProperty Name="codPostulante" ColumnName="codPostulante" />
+                <ScalarProperty Name="codCent_Estu" ColumnName="codCent_Estu" />
+                <ScalarProperty Name="Nivel" ColumnName="Nivel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DETALLE_MASTER">
+            <EntityTypeMapping TypeName="Sistema_RecruiterModel1.DETALLE_MASTER">
+              <MappingFragment StoreEntitySet="DETALLE_MASTER">
+                <ScalarProperty Name="codCent_Estu" ColumnName="codCent_Estu" />
+                <ScalarProperty Name="codMaster" ColumnName="codMaster" />
+                <ScalarProperty Name="codPostulante" ColumnName="codPostulante" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DETALLE_POSTGRADO">
+            <EntityTypeMapping TypeName="Sistema_RecruiterModel1.DETALLE_POSTGRADO">
+              <MappingFragment StoreEntitySet="DETALLE_POSTGRADO">
+                <ScalarProperty Name="codCent_Estu" ColumnName="codCent_Estu" />
+                <ScalarProperty Name="codPostgrado" ColumnName="codPostgrado" />
+                <ScalarProperty Name="codPostulante" ColumnName="codPostulante" />
+                <ScalarProperty Name="EstadoPostgrado" ColumnName="EstadoPostgrado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DETALLE_PREGRADO">
+            <EntityTypeMapping TypeName="Sistema_RecruiterModel1.DETALLE_PREGRADO">
+              <MappingFragment StoreEntitySet="DETALLE_PREGRADO">
+                <ScalarProperty Name="codCent_Estu" ColumnName="codCent_Estu" />
+                <ScalarProperty Name="codPregrado" ColumnName="codPregrado" />
+                <ScalarProperty Name="codPostulante" ColumnName="codPostulante" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DETALLE_PROCESOS">
+            <EntityTypeMapping TypeName="Sistema_RecruiterModel1.DETALLE_PROCESOS">
+              <MappingFragment StoreEntitySet="DETALLE_PROCESOS">
+                <ScalarProperty Name="codProceso" ColumnName="codProceso" />
+                <ScalarProperty Name="codPostulante" ColumnName="codPostulante" />
+                <ScalarProperty Name="Resultado_Proceso" ColumnName="Resultado_Proceso" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="Sistema_RecruiterModel1.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="Sistema_RecruiterModel1.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="Sistema_RecruiterModel1.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="Sistema_RecruiterModel1.Store.sp_helpdiagramdefinition" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="Sistema_RecruiterModel1.Store.sp_helpdiagrams" />
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="Sistema_RecruiterModel1.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_Servicio_Procesos" FunctionName="Sistema_RecruiterModel1.Store.sp_Servicio_Procesos">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Sistema_RecruiterModel1.sp_Servicio_Procesos_Result">
+                <ScalarProperty Name="codProceso" ColumnName="codProceso" />
+                <ScalarProperty Name="Plaza" ColumnName="Plaza" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Fec_ini" ColumnName="Fec_ini" />
+                <ScalarProperty Name="Fec_Fin" ColumnName="Fec_Fin" />
+                <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+                <ScalarProperty Name="Resultado_Proceso" ColumnName="Resultado_Proceso" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Servicio_Seleccion" FunctionName="Sistema_RecruiterModel1.Store.sp_Servicio_Seleccion">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Sistema_RecruiterModel1.sp_Servicio_Seleccion_Result">
+                <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+                <ScalarProperty Name="Empresa" ColumnName="Empresa" />
+                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+                <ScalarProperty Name="Fec_ini" ColumnName="Fec_ini" />
+                <ScalarProperty Name="Fec_Ter" ColumnName="Fec_Ter" />
+                <ScalarProperty Name="NombrePregrado" ColumnName="NombrePregrado" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="NombreMaster" ColumnName="NombreMaster" />
+                <ScalarProperty Name="NombreDoctorado" ColumnName="NombreDoctorado" />
+                <ScalarProperty Name="EstadoDoctorado" ColumnName="EstadoDoctorado" />
+                <ScalarProperty Name="NombreCentroEstudio" ColumnName="NombreCentroEstudio" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="Sistema_RecruiterModel1.Store.sp_upgraddiagrams" />
+          <FunctionImportMapping FunctionImportName="sp_ActualizarCentroEstudio" FunctionName="Sistema_RecruiterModel1.Store.sp_ActualizarCentroEstudio" />
+          <FunctionImportMapping FunctionImportName="sp_ConsultarCentroEstudio" FunctionName="Sistema_RecruiterModel1.Store.sp_ConsultarCentroEstudio">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Sistema_RecruiterModel1.sp_ConsultarCentroEstudio_Result">
+                <ScalarProperty Name="codCentro_Estu" ColumnName="codCentro_Estu" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="NombreCentroEstudio" ColumnName="NombreCentroEstudio" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="codDistrito" ColumnName="codDistrito" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_EliminarCentroEstudio" FunctionName="Sistema_RecruiterModel1.Store.sp_EliminarCentroEstudio" />
+          <FunctionImportMapping FunctionImportName="sp_InsertarCentroEstudio" FunctionName="Sistema_RecruiterModel1.Store.sp_InsertarCentroEstudio" />
+          <FunctionImportMapping FunctionImportName="sp_ActualziarPostulante" FunctionName="Sistema_RecruiterModel1.Store.sp_ActualziarPostulante" />
+          <FunctionImportMapping FunctionImportName="sp_ConsultarPostulante" FunctionName="Sistema_RecruiterModel1.Store.sp_ConsultarPostulante">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Sistema_RecruiterModel1.sp_ConsultarPostulante_Result">
+                <ScalarProperty Name="codPostulante" ColumnName="codPostulante" />
+                <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+                <ScalarProperty Name="Dni" ColumnName="Dni" />
+                <ScalarProperty Name="Fec_Nac" ColumnName="Fec_Nac" />
+                <ScalarProperty Name="Sexo" ColumnName="Sexo" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Fec_Reg" ColumnName="Fec_Reg" />
+                <ScalarProperty Name="Usu_Reg" ColumnName="Usu_Reg" />
+                <ScalarProperty Name="Fec_Mod" ColumnName="Fec_Mod" />
+                <ScalarProperty Name="Usu_Mod" ColumnName="Usu_Mod" />
+                <ScalarProperty Name="codCargo" ColumnName="codCargo" />
+                <ScalarProperty Name="codDistrito" ColumnName="codDistrito" />
+                <ScalarProperty Name="codPregrado" ColumnName="codPregrado" />
+                <ScalarProperty Name="codDoctorado" ColumnName="codDoctorado" />
+                <ScalarProperty Name="codMaster" ColumnName="codMaster" />
+                <ScalarProperty Name="codCent_Estu" ColumnName="codCent_Estu" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_EliminarPostulante" FunctionName="Sistema_RecruiterModel1.Store.sp_EliminarPostulante" />
+          <FunctionImportMapping FunctionImportName="sp_InsertarPostulante" FunctionName="Sistema_RecruiterModel1.Store.sp_InsertarPostulante" />
+          <FunctionImportMapping FunctionImportName="sp_ActualizarDoctorado" FunctionName="Sistema_RecruiterModel1.Store.sp_ActualizarDoctorado" />
+          <FunctionImportMapping FunctionImportName="sp_ActualizarMaster" FunctionName="Sistema_RecruiterModel1.Store.sp_ActualizarMaster" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
